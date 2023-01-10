@@ -32,6 +32,6 @@ create_unroll_int! {
     10 9 8 7 6 5 4 3 1 2 0
 }
 
-fn x() {
-    let x = unroll_int!(20);
+pub fn x() {
+    let _ = unroll_int!(20);
 }

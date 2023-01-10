@@ -1,8 +1,9 @@
 #![feature(ptr_metadata)]
 #![feature(trace_macros)]
+#![feature(auto_traits)]
+#![feature(negative_impls)]
 
-mod cfg_match;
-mod unroll_int;
-mod unsized_clone;
-
-pub use unsized_clone::*;
+pub mod cfg_match;
+pub mod sendsync;
+pub mod unroll_int;
+pub mod unsized_clone;
