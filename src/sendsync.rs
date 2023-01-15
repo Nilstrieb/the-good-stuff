@@ -1,3 +1,5 @@
+#![cfg_attr(not(test), allow(unused))]
+
 use std::{
     cell::{Cell, UnsafeCell},
     rc::Rc,
@@ -27,9 +29,9 @@ fn rc_the_new_contender() {
     let x = Rc::new(0);
     let x2 = x.clone();
     spawn(move || {
-        x2.clone();
+        let _ = x2.clone();
     });
-    x.clone(); // DATA RACE
+    let _ = x.clone(); // DATA RACE
 }
 
 // Oh no, we have a data race. This is not exactly good, in fact it's really bad.
@@ -53,9 +55,9 @@ fn but_arc_is_fine() {
     let x = Arc::new(0);
     let x2 = x.clone();
     spawn(move || {
-        x2.clone();
+        let _ = x2.clone();
     });
-    x.clone();
+    let _ = x.clone();
 }
 
 // Arc is fine here because it uses atomics internally. But it fails to compile! Here, Arc (or us in this case)

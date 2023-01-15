@@ -4,6 +4,7 @@
 #![feature(negative_impls)]
 
 pub mod cfg_match;
+pub mod innocent_linked_list;
 pub mod sendsync;
 pub mod unroll_int;
 pub mod unsized_clone;
