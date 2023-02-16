@@ -29,12 +29,13 @@ impl syn::fold::Fold for LocalInitFolder {
         if let Some(last_path) = mac.path.segments.iter().next_back() {
             match last_path.ident.to_string().as_str() {
                 "scratch_write" => {
-                    let track_ident = &self.track_ident;
+                    let track_ident = &self.track_ident.clone();
                     mac.path = parse_quote! { actual_scratch_write };
                     mac.tokens.extend(quote! { ; #track_ident });
                 }
                 "scratch_read" => {
-                    let track_ident = &self.track_ident;
+                    let mut track_ident = self.track_ident.clone();
+                    track_ident.set_span(track_ident.span().located_at(last_path.ident.span()));
                     mac.path = parse_quote! { actual_scratch_read };
                     mac.tokens.extend(quote! { ; #track_ident });
                 }
