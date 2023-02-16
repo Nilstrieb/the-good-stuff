@@ -9,3 +9,7 @@ pub mod scratch;
 pub mod sendsync;
 pub mod unroll_int;
 pub mod unsized_clone;
+
+pub mod safe_extern {
+    pub use pm::safe_extern;
+}
