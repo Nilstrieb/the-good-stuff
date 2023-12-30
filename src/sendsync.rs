@@ -1,4 +1,5 @@
 #![cfg_attr(not(test), allow(unused))]
+#![allow(dropping_copy_types)]
 
 use std::{
     cell::{Cell, UnsafeCell},

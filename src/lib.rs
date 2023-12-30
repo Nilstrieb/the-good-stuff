@@ -5,6 +5,7 @@
 #![feature(strict_provenance)]
 
 pub mod cfg_match;
+pub mod hashmap;
 pub mod innocent_linked_list;
 pub mod scratch;
 pub mod sendsync;
