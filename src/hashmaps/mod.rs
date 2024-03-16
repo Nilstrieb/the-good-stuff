@@ -2,11 +2,11 @@ use std::hash::{BuildHasher, Hash};
 
 pub mod simple_open_addressing;
 
-trait HashMapFamily {
+pub trait HashMapFamily {
     type Map<K, V, S>: HashMap<K, V, S>;
 }
 
-trait HashMap<K, V, S>: IntoIterator<Item = (K, V)> {
+pub trait HashMap<K, V, S>: IntoIterator<Item = (K, V)> {
     fn with_hasher(state: S) -> Self;
 
     fn len(&self) -> usize;

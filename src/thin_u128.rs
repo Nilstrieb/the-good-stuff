@@ -31,7 +31,7 @@ impl ThinU128 {
         } else {
             let value = (int as usize) << 2;
             let repr = value | TAG_MASK | ALWAYS_ONE_NICHE;
-            Self(NonNull::new(ptr::invalid_mut(repr)).unwrap())
+            Self(NonNull::new(ptr::without_provenance_mut(repr)).unwrap())
         }
     }
 

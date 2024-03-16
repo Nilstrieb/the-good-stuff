@@ -67,7 +67,7 @@ pub use {actual_scratch_read, actual_scratch_write, define_scratch, scratch_read
 mod tests {
     use pm::scratch_space;
 
-    use super::{define_scratch, Scratch};
+    use super::Scratch;
 
     #[scratch_space]
     fn has_scratch_space(mut scratch: Scratch<'_>) {
