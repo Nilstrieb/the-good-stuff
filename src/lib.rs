@@ -10,6 +10,7 @@ pub mod sendsync;
 pub mod thin_u128;
 pub mod unroll_int;
 pub mod unsized_clone;
+pub mod assert;
 
 pub mod safe_extern {
     pub use pm::safe_extern;

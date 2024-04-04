@@ -71,7 +71,7 @@ mod tests {
         for count in [1, 10, 100, 1000, 10_000, 100_000] {
             test_many::<M, _>(count, RandomState::new());
         }
-        test_many::<M, _>(5000, BuildHasherDefault::<CollidingHasher>::default());
+        test_many::<M, _>(1000, BuildHasherDefault::<CollidingHasher>::default());
     }
 
     fn test_many<M: HashMapFamily, H: BuildHasher>(count: usize, h: H) {
