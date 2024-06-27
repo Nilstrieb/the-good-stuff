@@ -34,10 +34,15 @@ impl<F1: Future, F2: Future> Future for Join2<F1, F2> {
     type Output = (F1::Output, F2::Output);
 
     fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
+        // SAFETY: We must never move out of `this`.
+        // We do indeed not do this, except we do, when the future complets.
+        // This is okay, as we do this after dropping it.
+        // We also never expose a `&mut` to anyone.
         let this = unsafe { self.get_unchecked_mut() };
 
         fn make_progress<F: Future>(field: &mut JoinState<F>, cx: &mut Context<'_>) {
             match field {
+                // SAFETY: This is just projecting the pin into the field.
                 JoinState::Pending(fut) => match unsafe { Pin::new_unchecked(fut) }.poll(cx) {
                     Poll::Ready(result) => {
                         *field = JoinState::Ready(result);
